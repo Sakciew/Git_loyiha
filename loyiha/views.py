@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 
 
 def home(request):
-    first_news = New.objects.first()
+    first_news = New.objects.last()
     three_news = New.objects.all()[1:4]
     return render(request, 'home.html', {
         'first_news':first_news,
