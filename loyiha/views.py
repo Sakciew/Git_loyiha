@@ -35,12 +35,15 @@ def all_category(request):
     })
 
 def category(request, id):
-    category=Category.objects.get(id=id)
-    news=New.objects.filter(category=category)
-    return render(request, 'category-news.html',{
-        'all_news':news,
-        'category':category
-    })
+    try:
+        category=Category.objects.get(id=id)
+        news=New.objects.filter(category=category)
+        return render(request, 'category-news.html',{
+            'all_news':news,
+            'category':category
+        })
+    except:
+        print("Server Error (500)")
 
 def all_region(request):
     regs=Region.objects.all()

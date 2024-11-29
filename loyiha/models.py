@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.conf import settings
 
 class Category(models.Model):
     objects = None
@@ -24,7 +25,7 @@ class New(models.Model):
     text = models.TextField()
     image = models.ImageField(upload_to='posts/')
     date = models.DateField(auto_now=True)
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
